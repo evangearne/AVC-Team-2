@@ -8,6 +8,7 @@ int main (){
 	int xPixelSize = 0;
 	int add = 0;
 	init();
+	//The code up to here will only run once
 	while (true){
 		//Run Camera method
 		get.picture;
@@ -30,4 +31,5 @@ int main (){
 			}
 		}
 	}
+	return 0;
 }
