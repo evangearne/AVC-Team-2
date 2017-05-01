@@ -22,10 +22,10 @@ int main (){
 				//Run IR method
 			}else{
 				if (x <= (pixelSize/2)){
-					//turn robot right
+					//turn robot left
 				}
 				else{
-					//turn robot left
+					//turn robot right
 				}
 			}
 		}
