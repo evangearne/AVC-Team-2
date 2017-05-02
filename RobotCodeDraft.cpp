@@ -3,19 +3,13 @@
 #include "E101.h"
 
 int main (){
-	int x = 0;
-	int y = 0;
-	int xPixelSize = 0;
-	int add = 0;
 	init();
-	//The code up to here will only run once
 	while (true){
 		//Run Camera method
 		get.picture;
-		while (x <= pixelSize){
+		for (int x = 0;x <= 100;x = x + 10){
 			int cam = get.pixel(x,y,3);
 			int methodRed = get.pixel((xPixelSize/2),y,0);
-			x = x + add;
 			if (cam >= 127.5){
 				//Run motor forward for a specified time
 			}
@@ -23,13 +17,12 @@ int main (){
 				//Run IR method
 			}else{
 				if (x <= (pixelSize/2)){
-					//turn robot left
+					//turn robot right for a specified time
 				}
 				else{
-					//turn robot right
+					//turn robot left for a specified time
 				}
 			}
 		}
 	}
-	return 0;
 }
