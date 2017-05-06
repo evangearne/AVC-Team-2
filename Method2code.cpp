@@ -26,3 +26,4 @@ int main (){
 	while (method = 1){//wall maze method
 		
 	}
+}
