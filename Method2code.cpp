@@ -7,7 +7,7 @@ int main (){
 	int method = 0;
 	while (method = 0){//line finding method
 		get.picture;
-		for (int i = 0;i <= 320;i = i + 10){ 
+		for (int i = 0;i <= 320;i = i + 10;){ 
 			int cam = get.pixel(i,120,3);
 			int red = get.pixel(i,120,0);
 			if(red >= 127.5){
