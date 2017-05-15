@@ -24,8 +24,14 @@ int main (){
                                     }
                         }
             error = (sum/points)-160; //how far the white line is from camera centre
-            sleep1(0,100000); // waits for .1 secs
-            if(error==0){ //if line is straight ahead go straight
+             // waits for .1 secs
+            if(points = 0){
+                        set_motor(1, 126);
+                        set_motor(2, -126);
+                        
+                     
+            } else{
+                        if(error==0){ //if line is straight ahead go straight
                         set_motor(1, (0.5)*255); //sets left motor to half speed forward
                         set_motor(2, (-0.5)*255); //sets right motor     ''     ''
                         }
@@ -36,6 +42,8 @@ int main (){
                         set_motor(1, (final_signal/(160))*255); //sets left motor to a value between -255 and 255
                         set_motor(2, (final_signal/(160))*255); //sets right motor    ''     ''
                         }
+                        sleep1(0,100000);
+            }
             previous_error = error; //changes previous_error for next time around the loop
             }
 } 
