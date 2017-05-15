@@ -18,7 +18,7 @@ int main (){
                         int points = 0;
                         take_picture();
                         for (int i = 0; i<320; i++){ //loop to find position of white line
-                                    if (get_pixel(10,i,3)>80){ //if pixel is white
+                                    if (get_pixel(120,i,3)>80){ //if pixel is white
                                     sum = sum + i; //adds position of all white pixels
                                     points++; //counts white pixels
                                     }
@@ -37,8 +37,8 @@ int main (){
                                     proportional_signal = error*kp; //number between 0 and 80
                                     derivative_signal = (error-previous_error/0.1)*kd; //number between 0 and 80
                                     final_signal = proportional_signal+derivative_signal; //adds the signals together
-                                    set_motor(1, (final_signal/(160))*254); //sets  motor to a value between -255 and 255
-                                    set_motor(2, (-final_signal/(160))*254); //sets  motor    ''     ''
+                                    set_motor(1, (final_signal/(160))*254); //sets left motor to a value between -255 and 255
+                                    set_motor(2, (-final_signal/(160))*254); //sets right motor    ''     ''
                         }
             }
             sleep1(0,100000); // waits for .1 secs
@@ -46,3 +46,5 @@ int main (){
             }
             return 0;
 } 
+
+// motor 2 = right wheel
