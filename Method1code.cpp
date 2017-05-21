@@ -3,7 +3,7 @@
 #include "E101.h"
 
 //sets initial variables
-float kd = 2.5;
+float kd = 0.25;
 float kp = 0.5;
 float error;
 float previous_error;
@@ -68,7 +68,7 @@ int main (){
                                     }
                                     else{ //if line is not straight ahead turn toward it
                                                 proportional_signal = error*kp; //number between 0 and 80
-                                                derivative_signal = (error-previous_error/0.1)*kd; //number between 0 and 80
+                                                derivative_signal = (error-previous_error)*kd; //number between 0 and 80
                                                 final_signal = proportional_signal+derivative_signal; //adds the signals together
                                                 set_motor(1, (final_signal/(160))*254); //sets left motor to a value between -255 and 255
                                                 set_motor(2, (-final_signal/(160))*254); //sets right motor    ''     ''
