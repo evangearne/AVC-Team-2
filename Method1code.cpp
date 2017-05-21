@@ -3,7 +3,7 @@
 #include "E101.h"
 
 //sets initial variables
-float kd = 0.5;
+float kd = 0.5; //kd and kp should add up to 1
 float kp = 0.5;
 float error;
 float previous_error;
