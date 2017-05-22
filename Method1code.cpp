@@ -3,8 +3,8 @@
 #include "E101.h"
 
 //sets initial variables
-float kd = 2.5;
-float kp = 0.5;
+float kd = 0.2;
+float kp = 0.8;
 float error = 0;
 float previous_error = 0;
 float proportional_signal = 0;
@@ -46,14 +46,14 @@ sleep1(0,300000); //waits .3 sec
                                     }
                         }
             if(points==0){
-              //          set_motor(1, 50);
-                //        set_motor(2, -50);
+                        set_motor(1, 10);
+                        set_motor(2, -10);
             }
             else{
                         error = (sum/points)-160; //how far the white line is from camera centre
                         printf("%f \n", error);
                         proportional_signal = error*kp; //number between 0 and 80
-                        derivative_signal = (error-previous_error)*kd; //number between 0 and 80
+                        derivative_signal = (error-previous_error)*(kd/2); //number between 0 and 80
                         final_signal = proportional_signal+derivative_signal; //adds the signals together
                         
                         if(error<=10 && error>=-10){ //if line is straight ahead go straight
@@ -64,12 +64,12 @@ sleep1(0,300000); //waits .3 sec
 
                                     //set_motor(1, (final_signal/(160))*30); //sets  motor to a value between -255 and 255
                                     //set_motor(2, (final_signal/(160))*15); //sets  motor    ''     ''
-set_motor(1, 20 + proportional_signal);
+set_motor(1, 20 + final_signal);
 set_motor(2, 20);
 }
 else if (error < -10){
                                 set_motor(1,20);
-set_motor(2,20 - proportional_signal);  
+set_motor(2,20 - final_signal);  
 // set_motor(1, (final_signal/(160))*15);
                                     // set_motor(2, (final_signal/(160))*30);
                         }
