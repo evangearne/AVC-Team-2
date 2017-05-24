@@ -22,9 +22,9 @@ int main (){
             printf("message saved\n");
             connect_to_server(ip, 1024);
             printf("connected\n");
-            //receive_from_server(message); //this may be buggy!
+            receive_from_server(message);
             printf("received\n");
-            //send_to_server(message);
+            send_to_server(message);
             printf("sent\n");
 			printf("%s\n", message);
 			
@@ -41,38 +41,28 @@ int main (){
             if(points==0){
                         set_motor(1, -215);
                         set_motor(2, -235);
-                        sleep1(0,400000); // waits for .1 secs
+                        sleep1(0,400000); // waits for .4 secs
             }
             else{
                         error = (sum/points)-160; //how far the white line is from camera centre
                         printf("%f \n", error);
                         
                         proportional_signal = error*kp; //number between 0 and 80
-                        /**
-                        derivative_signal = (error-previous_error)*(kd/2); //number between 0 and 80
-                        final_signal = proportional_signal+derivative_signal; //adds the signals together
-                        */
                         
                         if(error<=10 && error>=-10){ //if line is straight ahead go straight
                                     set_motor(1, 215); //sets  motor to forward
                                     set_motor(2, 215); //sets  motor ''     ''
                         }
                         else if (error > 10){ //if line is not straight ahead turn toward it 
-						/**
-                        set_motor(1, (final_signal/(160))*30); //sets  motor to a value between -255 and 255
-                        set_motor(2, (final_signal/(160))*15); //sets  motor    ''     ''
-                        */ 
+							
+						 
                         
-								set_motor(1, 215 - proportional_signal);
+								set_motor(1, 215 - proportional_signal);  //subtract to create a double negative because error is negative
 								set_motor(2, 225);
 						}
 						else if (error < -10){
                                 set_motor(1,225);
 								set_motor(2,215 + proportional_signal);  
-								/**
-									// set_motor(1, (final_signal/(160))*15);
-                                    // set_motor(2, (final_signal/(160))*30);
-                                    */ 
                         }
             }
        
@@ -81,4 +71,4 @@ int main (){
             }
             return 0;
 } 
-//sudo g++ -o Team2 Team2.cpp -le101
+
