@@ -22,21 +22,35 @@ int main (){
             printf("message saved\n");
             connect_to_server(ip, 1024);
             printf("connected\n");
+            send_to_server(message);
+            printf("sent please\n");
             receive_from_server(message);
             printf("received\n");
             send_to_server(message);
-            printf("sent\n");
+            printf("sent message back\n");
 			printf("%s\n", message);
 			
             for(;;){ //infinite loop
                         int sum = 0;
-                        int points = 0;
+                        int points = 0;\
+                        int red = 0;
+                        int green = 0;
+                        int blue = 0;
                         take_picture();
                         for (int i = 0; i<320; i++){ //loop to find position of white line
-                                    if (get_pixel(220,i,3)>120){ //if pixel is white
+                                    if (get_pixel(220,i,3)>100){ //if pixel is white
                                     sum = sum + i; //adds position of all white pixels
                                     points++; //counts white pixels
                                     }
+                                    if (get_pixel(220,i,0)>150){
+										red++;
+									}
+									if (get_pixel(220,i,1)>150){
+										green++;
+									}
+									if (get_pixel(220,i,2)>150){
+										blue++;
+									}
                         }
             if(points==0){
                         set_motor(1, -215);
@@ -65,7 +79,13 @@ int main (){
 								set_motor(2,215 + proportional_signal);  
                         }
             }
-       
+            
+			if (red > 70 && green < 30 && blue < 30){
+				set_motor(1, 175); //sets  motor to forward
+                set_motor(2, 180); //sets  motor ''     ''
+                sleep1(6,0); // waits for 1 secs
+			}
+			 
             sleep1(0,100000); // waits for .1 secs
             previous_error = error; //changes previous_error for next time around the loop
             }
